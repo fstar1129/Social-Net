@@ -1,10 +1,4 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
-
-## How to use this template
-
-_This template does not work on its own_. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/driftyco/ionic2-app-base).
-
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/driftyco/ionic2-app-base).
+This is a clone of facebook for [Ionic](http://ionicframework.com/docs/) projects.
 
 ### With the Ionic CLI:
 
@@ -113,26 +107,6 @@ Substitute ios for android if not on a Mac.
 $ ionic cordova plugin add cordova-plugin-badge
 $ npm install --save @ionic-native/badge
 
-# account kit ( used)
-
-cordova plugin add cordova-plugin-accountkit --save --variable APP_ID="814520985371944" --variable APP_NAME="social app in ionic 3" --variable CLIENT_TOKEN="f9ad6dac276bc6d9b5fc9e075ee4e048" --variable API_VERSION="v1.1"
-
-1. add following code in plugin/cordova-plugin-accountkit/src/android/AccountKitPlugin.java
-   result.put("mobile", account.getPhoneNumber());
-
-2. add following code in build.gradle
-
-configurations.all {
-resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-def requested = details.requested
-if (requested.group == 'com.android.support') {
-if (!requested.name.startsWith("multidex")) {
-details.useVersion '25.3.0'
-}
-}
-}
-}
-
 3. Add string in strings.xml file
 
    <string name="fb_app_id">814520985371944</string>
@@ -159,39 +133,6 @@ MAc
 2. keytool -genkey -v -keystore communicaters.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000 ( First time)
 3. jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore communicaters.keystore platforms/android/build/outputs/apk/android-armv7-release-unsigned.apk alias_name
 4. /Users/testing/Library/Android/sdk/build-tools/27.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-armv7-release-unsigned.apk CommunicaterV17.apk
-
----
-
----
-
-Alias name: alias_name
-Creation date: Aug 13, 2017
-Entry type: PrivateKeyEntry
-Certificate chain length: 1
-Certificate[1]:
-Owner: CN=nakul, OU=ionic, O=ionic, L=rajkot, ST=gujarat, C=91
-Issuer: CN=nakul, OU=ionic, O=ionic, L=rajkot, ST=gujarat, C=91
-Serial number: 75764ca5
-Valid from: Sun Aug 13 08:55:45 IST 2017 until: Thu Dec 29 08:55:45 IST 2044
-Certificate fingerprints:
-MD5: 94:2B:1F:F7:EF:09:CC:86:D2:2D:DA:16:26:A5:8E:98
-SHA1: 4D:3E:5D:BE:1B:2F:63:BD:61:38:AD:D7:94:83:4E:A8:6B:A0:8E:8F
-SHA256: 57:FF:78:F0:24:17:51:6D:F8:28:19:10:D7:EE:90:09:0A:16:19:CB:92:
-5F:E1:B8:70:FF:E7:45:82:77:EA:A0
-Signature algorithm name: SHA256withRSA
-Version: 3
-
-Extensions:
-
-#1: ObjectId: 2.5.29.14 Criticality=false
-SubjectKeyIdentifier [
-KeyIdentifier [
-0000: A0 F7 8F 5F C8 27 47 A7 8E 5A 82 48 64 A1 22 37 ..._.'G..Z.Hd."7
-0010: BA A8 22 0C ..".
-]
-]
-
----
 
 ---
 
