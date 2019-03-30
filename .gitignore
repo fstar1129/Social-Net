@@ -6,4 +6,4 @@ resources
 _MACOSX
 gen
 www/*
-!/index.html
+!www/index.html
