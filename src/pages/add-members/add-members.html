@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons>
+      <button ion-button tappable (click)="back()">Back</button>
+    </ion-buttons>
+    <ion-title>Add Members</ion-title>
+    <!-- Only enable button when user is adding atleast one member to the group -->
+    <ion-buttons end>
+      <button ion-button tappable (click)="done()" [disabled]="toAdd && toAdd.length < 1">Done</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- All friends already in the group. -->
+  <div class="empty-list" *ngIf="friends && friends.length == 0">
+    <h1><ion-icon name="md-contacts"></ion-icon></h1>
+    <p>Uh-oh! Sorry but your friends are already a member of this group.</p>
+    <button ion-button icon-left tappable (click)="back()"><ion-icon name="md-arrow-round-back"></ion-icon>Go Back</button>
+  </div>
+  <!-- Add/Cancel Add friends to the group. -->
+  <ion-list class="avatar-list" *ngIf="friends && friends.length > 0">
+    <ion-searchbar [(ngModel)]="searchFriend" placeholder="Search for friend or username" showCancelButton="true" cancelButtonText="Done"></ion-searchbar>
+    <ion-item *ngFor="let friend of friends | friendFilter:searchFriend" no-lines tappable (click)="addOrRemove(friend)">
+      <ion-fab middle right>
+        <button ion-fab mini tappable (click)="add(friend); $event.stopPropagation();" *ngIf="!isAdded(friend)"><ion-icon name="md-add-circle" class="success"></ion-icon></button>
+        <button ion-fab mini tappable (click)="remove(friend); $event.stopPropagation();" *ngIf="isAdded(friend)"><ion-icon name="md-close-circle" class="danger"></ion-icon></button>
+      </ion-fab>
+      <ion-avatar item-left>
+        <img src="{{friend.img}}">
+      </ion-avatar>
+      <h2>{{friend.name}}</h2>
+      <p>@{{friend.username}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

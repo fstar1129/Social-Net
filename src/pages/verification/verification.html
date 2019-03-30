@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Verify Account</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="user">
+    <div class="profile">
+      <img src="{{user.img}}" tappable (click)="setPhoto()" />
+    </div>
+    <!-- Show icon of logged in provider -->
+    <h4>
+      <span>{{user.name}} </span>
+      <ion-icon name="md-flame" *ngIf="user.provider == 'Firebase'" class="firebase"></ion-icon>
+      <ion-icon name="logo-facebook" *ngIf="user.provider == 'Facebook'" class="facebook"></ion-icon>
+      <ion-icon name="logo-google" *ngIf="user.provider == 'Google'" class="google"></ion-icon>
+    </h4>
+    <div class="divider"></div>
+    <p>An email confirmation has been sent to: <span>{{user.email}}</span>.</p>
+    <!-- Verification Menu -->
+    <ion-list>
+      <ion-item no-lines tappable (click)="sendEmailVerification()">
+        Resend Confirmation Email
+        <ion-icon name="md-contact" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setEmail()">
+        Change Email Address
+        <ion-icon name="md-mail-open" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="logout()">
+        Logout
+        <ion-icon name="md-log-out" item-right></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

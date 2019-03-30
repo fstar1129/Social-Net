@@ -1,0 +1,66 @@
+page-groups {
+  ion-col {
+    float: left !important;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  div.group {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+    border-radius: 1em;
+
+    img {
+      margin-top: 1.25em;
+      border-radius: 100%;
+      width: 5em;
+      height: 5em;
+      object-fit: cover;
+    }
+
+    img.activated,
+    img:active {
+      opacity: 0.5;
+    }
+
+    ion-badge {
+      position: absolute;
+      top: 1em;
+      right: 3.5em;
+    }
+
+    p,
+    span {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+    }
+
+    p {
+      margin-top: 0.5em;
+      margin-bottom: 0.2em;
+      color: $primary;
+      font-size: 100%;
+      display: block;
+    }
+
+    span {
+      color: $gray;
+      font-size: 90%;
+      display: block;
+      padding-bottom: 1.25em;
+    }
+  }
+
+  div.group.activated,
+  div.group:active {
+    opacity: 0.5;
+  }
+}

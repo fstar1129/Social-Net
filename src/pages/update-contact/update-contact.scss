@@ -1,0 +1,62 @@
+page-update-contact {
+.logo-container {
+    margin-top: 15%;
+  }
+  .title-container {
+    margin-top: 5%;
+  }
+  .contry-code-container {
+    margin-top: 5%;
+  }
+  .mobile-container {
+    margin-top: 5%;
+  }
+  .button-container {
+    margin-top: 5%;
+  }
+  .terms-container {
+    margin-top: 5%;
+  }
+  .page-title {
+    font-size: 20px;
+  }
+  .select-country {
+    padding-right: 10px !important;
+    margin-right: 5px !important;
+    text-align: right;
+    min-width: 100% !important;
+    border: 1px solid black;
+    border-radius: 25px;
+  }
+  .select-text,
+  .select-placeholder {
+    text-align: center !important;
+  }
+  .select-md .select-icon .select-icon-inner {
+    left: 0 !important;
+  }
+  .select-ios .select-icon .select-icon-inner {
+    left: 0 !important;
+  }
+  .label-md[stacked] {
+    text-align: center;
+    font-size: 16px !important;
+    color: #6b6b6b;
+  }
+  .text-input-md,
+  .text-input-ios {
+    width: 100% !important;
+    font-size: 16px !important;
+    color: #000000;
+    text-align: center;
+  }
+  .sign-in-button {
+    font-size: 16px;
+  }
+  .input-wrapper{
+  	text-align:center;
+  }
+  .item-ios{
+  	padding-left:0px;
+  }
+}

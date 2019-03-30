@@ -1,0 +1,23 @@
+page-messages {
+  ion-item span {
+    color: $primary;
+    font-size: 75%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 0.75em;
+    padding-top: 0.75em;
+  }
+
+  ion-badge {
+    float: right;
+  }
+
+  div.bold {
+    h2 {
+      font-weight: bold !important;
+    }
+    font-weight: bold;
+  }
+  
+}

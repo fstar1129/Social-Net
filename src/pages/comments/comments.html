@@ -1,0 +1,63 @@
+<!--
+  Generated template for the Comment page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="custom">
+
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Comment
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content >
+
+  <ion-list *ngIf="comments">
+    <ion-item  *ngFor="let item of comments">
+
+      <ion-avatar item-left >
+        <img src="{{item.avatar}}" >
+      </ion-avatar>
+      <h2>{{item.name}}</h2>
+      <p>{{item.commentText}} </p>
+      <ion-note item-right>{{item.dateCreated | DateFormat}}</ion-note>
+    </ion-item>
+    <!-- <div class="nocomment" *ngIf="!commentList.length">
+      <img src="assets/no-record.png">
+
+    </div> -->
+  </ion-list>
+
+</ion-content>
+<ion-footer >
+  <ion-grid>
+    <ion-row>
+        <!--<ion-col col-12>
+       <button ion-button icon-only color="custom" (click)="imageShare()">
+          <ion-icon name='camera'></ion-icon>
+        </button>
+      </ion-col>-->
+      <ion-col col-10>
+        <ion-textarea  placeholder="Enter your comment" [(ngModel)]="commentText"></ion-textarea>
+
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button icon-only  color="custom" (click)="postComment()" [disabled]="!commentText">
+          <ion-icon name='send'></ion-icon>
+
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-footer>

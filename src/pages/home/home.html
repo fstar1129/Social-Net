@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="user">
+    <div class="profile">
+      <img src="{{user.img}}" tappable (click)="setPhoto()" />
+    </div>
+    <!-- Show icon of logged in provider -->
+    <h4>
+      <span tappable (click)="setName()" class="username">{{user.name}} </span>
+      <ion-icon name="md-flame" *ngIf="user.provider == 'Firebase'" class="firebase"></ion-icon>
+      <ion-icon name="logo-facebook" *ngIf="user.provider == 'Facebook'" class="facebook"></ion-icon>
+      <ion-icon name="logo-google" *ngIf="user.provider == 'Google'" class="google"></ion-icon>
+    </h4>
+    <p tappable (click)="setUsername()" class="username">@{{user.username}}</p>
+    <p tappable (click)="setDescription()" class="description">{{user.description}}</p>
+    <!-- Profile Menu -->
+    <ion-list>
+      <ion-item no-lines tappable (click)="setName()">
+        Set Profile Name
+        <ion-icon name="md-contact" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setUsername()">
+        Set Username
+        <ion-icon name="md-at" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setDescription()">
+        Set Description
+        <ion-icon name="md-clipboard" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setPhoto()">
+        Set Profile Photo
+        <ion-icon name="ios-camera" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setEmail()">
+        Change Email Address
+        <ion-icon name="md-mail-open" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="updateContactNumber()">
+        Change Phone number
+        <ion-icon name="md-call" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setPassword()" *ngIf="user && user.provider == 'Firebase'">
+        Change Password
+        <ion-icon name="md-key" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="reportedPost()" *ngIf="user && user.isAdmin == true">
+        Reported Post
+        <ion-icon name="md-book" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="users()" *ngIf="user && user.isAdmin == true">
+        User list
+        <ion-icon name="md-book" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="sendfeedback()">
+        <!-- href="mailto:nakulkundaliya12@com.com?Subject=SendFeedBack" target="_top"-->
+        Send Feedback
+        <ion-icon name="md-paper" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="deleteAccount()">
+        Delete Account
+        <ion-icon name="md-trash" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="logout()">
+        Logout
+        <ion-icon name="md-log-out" item-right></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

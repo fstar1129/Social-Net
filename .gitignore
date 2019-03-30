@@ -1,0 +1,9 @@
+node_modules
+platforms
+plugins
+resources
+.sourcemaps
+_MACOSX
+gen
+www/*
+!/index.html

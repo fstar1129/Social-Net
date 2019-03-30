@@ -1,0 +1,169 @@
+page-group-info {
+  .members {
+    text-align: center;
+
+    img {
+      border-radius: 100%;
+      width: 3.25em;
+      height: 3.25em;
+      margin: 0.5em;
+    }
+
+    img.activated,
+    img:active {
+      opacity: 0.5;
+    }
+  }
+
+  ion-list {
+    margin-top: 1.125em !important;
+
+    ion-item {
+      background: rgba(0, 0, 0, 0.3) !important;
+      color: #fff !important;
+    }
+
+    ion-item.activated {
+      background: rgba(0, 0, 0, 0.5) !important;
+      color: $primary !important;
+    }
+
+    ion-item.activated ion-icon {
+      color: $primary;
+    }
+  }
+
+  .profile {
+    position: relative;
+    overflow: hidden;
+    height: 24vh;
+    margin-bottom: -0.625em;
+
+    img {
+      width: 28vw;
+      height: 28vw;
+      border-radius: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      object-fit: cover;
+    }
+
+    img.activated {
+      opacity: 0.5;
+    }
+  }
+
+  h4,
+  p {
+    text-align: center;
+  }
+
+  h4 {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+  }
+
+  p.username {
+    color: $primary;
+    margin-bottom: -6px !important;
+    margin-top: 6px !important;
+    font-size: 115%;
+  }
+
+  p.description {
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p {
+    color: $gray;
+  }
+
+  h4 span.activated,
+  p.activated {
+    opacity: 0.5;
+  }
+
+  .divider {
+    width: 12vw;
+    border-bottom: solid 0.2em $primary;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+  }
+
+  ion-icon {
+    color: #fff;
+    font-size: 1.4em;
+  }
+
+  ion-icon.facebook {
+    color: $facebook;
+  }
+
+  ion-icon.google {
+    color: $google;
+  }
+
+  ion-icon.firebase {
+    color: $primary;
+  }
+
+  button {
+    border-radius: 0.75em !important;
+  }
+
+  button.danger {
+    background: color($colors, danger);
+  }
+
+  button.danger.activated,
+  button.danger:active {
+    background: color($colors, danger);
+  }
+
+  button.success {
+    background: color($colors, balanced);
+  }
+
+  button.success.activated,
+  button.success:active {
+    background: color($colors, balanced);
+  }
+
+  button.danger.activated,
+  button.danger:active,
+  button.success.activated,
+  button.success:active {
+    opacity: 0.5 !important;
+  }
+
+  button.primary {
+    background: $primary;
+  }
+
+  button.primary.activated,
+  button.primary:active {
+    background: $primary-active;
+  }
+
+  button.dark {
+    background: $dark;
+  }
+
+  button.dark.activated,
+  button.dark:active {
+    background: $dark-active;
+  }
+
+  p.info {
+    font-size: 110%;
+    color: #fff;
+  }
+}

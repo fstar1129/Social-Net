@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center class="title-container">
+      <p class="page-title">Update Phone number</p>
+    </ion-row>
+    <ion-row  justify-content-center class="contry-code-container">
+      <ion-item>
+        <ion-select placeholder="Select" [(ngModel)]="countryCode" name="code" class="select-country" placeholder="Select Country Code" >
+          <ion-option *ngFor="let item of countryList" value="{{item.dial_code}}">
+              {{item.dial_code}} - {{item.name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+    <ion-row  justify-content-center class="mobile-container">
+      <ion-item>
+        <ion-label stacked>Mobile Number</ion-label>
+        <ion-input #mobileinput class="mobile-input" type="number" [(ngModel)]="phoneNumber" name="mobile" maxlength="16"></ion-input>
+      </ion-item>
+    </ion-row>
+     <ion-row justify-content-center class="button-container">
+      <button ion-button round block class="sign-in-button" id="sign-in" (click)="updateContact()">
+        Update
+      </button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons>
+      <button ion-button tappable (click)="back()">Back</button>
+    </ion-buttons>
+    <ion-title>New Message</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- No friends yet to start a conversation with -->
+  <div class="empty-list" *ngIf="friends && friends.length == 0">
+    <h1><ion-icon name="md-contacts"></ion-icon></h1>
+    <p>Uh-oh! You have not added any friends yet.</p>
+    <button ion-button icon-left tappable (click)="searchPeople()"><ion-icon name="md-search"></ion-icon>Search People</button>
+  </div>
+  <!-- Show friends to start a conversation with -->
+  <ion-list class="avatar-list" *ngIf="friends && friends.length > 0">
+    <ion-searchbar [(ngModel)]="searchFriend" placeholder="Search for friend or username" showCancelButton="true" cancelButtonText="Done"></ion-searchbar>
+    <ion-item *ngFor="let friend of friends | friendFilter:searchFriend" no-lines tappable (click)="message(friend.$key)">
+      <ion-avatar item-left>
+        <ion-icon name="radio-button-on" class="online" [ngClass]="friend.isOnline?'isOnline' : 'isOffline'"></ion-icon>
+        <img src="{{friend.img}}">
+      </ion-avatar>
+      <h2>{{friend.name}}</h2>
+      <p>@{{friend.username}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

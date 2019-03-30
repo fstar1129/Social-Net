@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons>
+      <button ion-button tappable (click)="back()">Back</button>
+    </ion-buttons>
+    <ion-title>Search People</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- No other users to send friend request right now. -->
+  <div class="empty-list" *ngIf="accounts && (accounts.length == 0 || (accounts.length == excludedIds.length))">
+    <h1><ion-icon name="md-search"></ion-icon></h1>
+    <p>Uh-oh! Sorry but we can't find other users right now. Try again later.</p>
+    <button ion-button icon-left tappable (click)="back()"><ion-icon name="md-arrow-round-back"></ion-icon>Go Back</button>
+  </div>
+  <!-- Show other users excluding yourself, and friends with the help of searchFilter pipe. -->
+  <ion-list class="avatar-list" *ngIf="accounts && accounts.length > 0">
+    <ion-searchbar *ngIf="accounts.length != excludedIds.length" [(ngModel)]="searchUser" placeholder="Search for name or username" showCancelButton="true" cancelButtonText="Done"></ion-searchbar>
+    <ion-item *ngFor="let account of accounts | searchFilter: [excludedIds, searchUser]" no-lines tappable (click)="viewUser(account.$key)">
+      <ion-fab middle right style="position: absolute; right: 0 ;">
+        <!-- Show appropriate buttons depending on the status of this user in relation to the current user. -->
+        <!-- // Returns:
+        // 0 when user can be requested as friend.
+        // 1 when a friend request was already sent to this user.
+        // 2 when this user has a pending friend request. -->
+        <button ion-fab mini tappable (click)="sendFriendRequest(account); $event.stopPropagation();" *ngIf="getStatus(account) == 0">
+          <ion-icon name="md-add-circle" class="success"></ion-icon>
+        </button>
+        <button ion-fab mini tappable (click)="cancelFriendRequest(account); $event.stopPropagation();" *ngIf="getStatus(account) == 1">
+          <ion-icon name="md-close-circle" class="danger"></ion-icon>
+        </button>
+        <button ion-fab mini tappable (click)="acceptFriendRequest(account); $event.stopPropagation();" *ngIf="getStatus(account) == 2">
+          <ion-icon name="md-checkmark-circle" class="success"></ion-icon>
+        </button>
+      </ion-fab>
+      <ion-avatar item-left>
+        <ion-icon name="radio-button-on" class="online" [ngClass]="account.isOnline?'isOnline' : 'isOffline'"></ion-icon>
+        <img src="{{account.img}}">
+      </ion-avatar>
+      <h2>{{account.name}}</h2>
+      <p>@{{account.username}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

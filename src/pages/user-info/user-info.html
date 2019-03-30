@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons>
+      <button ion-button tappable (click)="back()">Back</button>
+    </ion-buttons>
+    <ion-title *ngIf="user">{{user.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- User Info -->
+  <div *ngIf="user">
+    <div class="profile">
+      <img src="{{user.img}}" tappable (click)="enlargeImage(user.img)" />
+    </div>
+    <h4>
+      <span>{{user.name}} </span>
+      <ion-icon name="md-flame" *ngIf="user.provider == 'Firebase'" class="firebase"></ion-icon>
+      <ion-icon name="logo-facebook" *ngIf="user.provider == 'Facebook'" class="facebook"></ion-icon>
+      <ion-icon name="logo-google" *ngIf="user.provider == 'Google'" class="google"></ion-icon>
+    </h4>
+    <p class="username">@{{user.username}}</p>
+    <p class="description">{{user.description}}</p>
+    <div class="divider"></div>
+    <div class="center">
+      <!-- Show actions based on the status of the user in relation to the current logged in user. -->
+      <div *ngIf="friendRequests && friendRequests.indexOf(user.$key) > -1">
+        <p class="info">Sent you a friend request.</p>
+        <button ion-button icon-only class="danger" tappable (click)="rejectFriendRequest()"><ion-icon name="md-close"></ion-icon></button>
+        <button ion-button icon-only class="success" tappable (click)="acceptFriendRequest()"><ion-icon name="md-checkmark"></ion-icon></button>
+      </div>
+      <div *ngIf="requestsSent && requestsSent.indexOf(user.$key) > -1">
+        <p class="info">Friend request sent.</p>
+        <button ion-button class="dark" tappable (click)="cancelFriendRequest()">Cancel Friend Request</button>
+      </div>
+      <div *ngIf="canAdd()">
+        <p class="info">You are not yet friends.</p>
+        <button ion-button class="primary" tappable (click)="sendFriendRequest()">Send Friend Request</button>
+      </div>
+      <div *ngIf="friends && friends.indexOf(user.$key) > -1">
+        <p class="info">You are already friends.</p>
+        <button ion-button class="primary" tappable (click)="sendMessage()">Send Message</button>
+        <button ion-button class="primary" tappable (click)="unFriend(user.$key)">Unfriend</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

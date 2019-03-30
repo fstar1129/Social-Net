@@ -1,0 +1,11 @@
+
+
+
+
+<ion-tabs selectedIndex="0">
+  <ion-tab [root]="timeline" tabIcon="md-home" tabBadgeStyle="danger" ></ion-tab>
+  <ion-tab [root]="messages" tabIcon="md-text" tabBadgeStyle="danger" tabBadge="{{getUnreadMessagesCount()}}"></ion-tab>
+  <ion-tab [root]="groups" tabIcon="md-chatbubbles" tabBadgeStyle="danger" tabBadge="{{getUnreadGroupMessagesCount()}}"></ion-tab>
+  <ion-tab [root]="friends" tabIcon="md-contacts" tabBadgeStyle="danger" tabBadge="{{friendRequestCount}}"></ion-tab>
+  <ion-tab [root]="profile" tabIcon="md-contact"></ion-tab>
+</ion-tabs>

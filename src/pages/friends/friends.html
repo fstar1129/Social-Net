@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button icon-only tappable (click)="manageRequests()"><ion-icon name="md-filing"></ion-icon><ion-badge color="danger" *ngIf="friendRequests">{{friendRequests.length}}</ion-badge></button>
+    </ion-buttons>
+    <ion-title>Friends</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only tappable (click)="searchPeople()"><ion-icon name="md-search"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-segment color="dark"  [(ngModel)]="mode">
+    <ion-segment-button value="Friends" color>
+        Friends
+    </ion-segment-button>
+    <ion-segment-button value="MyContacts">
+      My Contacts
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>   
+  <div [ngSwitch]="mode">
+    <div *ngSwitchCase="'Friends'">
+      <!-- No friends to show -->
+      <div class="empty-list" *ngIf="friends && friends.length == 0">
+        <h1><ion-icon name="md-contacts"></ion-icon></h1>
+        <p>Uh-oh! You have not added any friends right now.</p>
+        <button ion-button icon-left tappable (click)="searchPeople()"><ion-icon name="md-search"></ion-icon>Search People</button>
+      </div>
+      <!-- Show list of friends -->
+      <ion-list class="avatar-list" *ngIf="friends && friends.length > 0">
+        <ion-searchbar [(ngModel)]="searchFriend" placeholder="Search for friend or username" showCancelButton="true" cancelButtonText="Done"></ion-searchbar>
+        <ion-item *ngFor="let friend of friends | friendFilter:searchFriend" no-lines tappable (click)="viewUser(friend.$key)">
+          <ion-fab middle right style="position: absolute; right: 0 ;">
+            <button ion-fab mini tappable (click)="message(friend.$key); $event.stopPropagation();"><ion-icon name="md-text" class="success"></ion-icon></button>
+          </ion-fab>
+          <ion-avatar item-left>
+            <ion-icon name="radio-button-on" class="online" [ngClass]="friend.isOnline?'isOnline' : 'isOffline'"></ion-icon>
+            <img src="{{friend.img}}">
+          </ion-avatar>
+          <h2>{{friend.name}}</h2>
+          <p>@{{friend.username}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'MyContacts'">
+      <div style="text-align:center';margin:0px auto" *ngIf="isLoadding"> <!--*ngIf="isLoadding"-->
+        <ion-spinner style="text-align:center"></ion-spinner>
+      </div>
+     <!-- No friends to show -->
+      <div class="empty-list" *ngIf="contactFriends && contactFriends.length == 0 && !isLoadding">
+        <h1><ion-icon name="md-contacts"></ion-icon></h1>
+        <p>Uh-oh! You have not added any contacts friends right now.</p>
+        <button *ngIf="!isContentNumber" ion-button icon-left tappable (click)="updateContact()"><ion-icon name="md-add"></ion-icon>Update Your Contact Number</button>
+      </div>
+     <ion-list>
+        <span *ngIf="!isLoadding">
+          <ion-item *ngFor="let friend of contactFriends" no-lines tappable>
+            <button ion-button item-end  color="primary"  (click)="inivite(friend)" *ngIf="friend.isUser == '0'"> INVITE</button>
+            <!-- <button ion-button item-end  color="primary"> INVITE</button> -->
+          <!--   <button ion-fab mini tappable (click)="message(friend.$key); $event.stopPropagation();" *ngIf="friend.isFriend == 0"><ion-icon name="md-text" class="success"></ion-icon></button> -->
+          <ion-avatar item-left>
+            <img src="assets/images/profile.png">
+          </ion-avatar>
+          <h2>{{friend.name}}</h2>
+          <p>@{{friend.phoneNumber}}</p>
+        </ion-item>
+        </span>
+        
+    </ion-list>
+    </div>
+  </div>
+  
+ 
+</ion-content>

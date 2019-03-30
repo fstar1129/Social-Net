@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div class="profile">
+      <img src="assets/images/profile.png" />
+    </div>
+    <h4>
+      <span>Guest User </span>
+      <ion-icon name="md-flame" class="firebase"></ion-icon>
+    </h4>
+    <div class="divider"></div>
+    <p>Logged in as Guest.</p>
+    <!-- Guest Menu -->
+    <ion-list>
+      <ion-item no-lines tappable (click)="linkFacebook()">
+        Link with Facebook
+        <ion-icon name="logo-facebook" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="linkGoogle()">
+        Link with Google
+        <ion-icon name="logo-google" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="logout()">
+        Logout
+        <ion-icon name="md-log-out" item-right></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

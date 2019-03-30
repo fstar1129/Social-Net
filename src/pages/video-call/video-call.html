@@ -1,0 +1,33 @@
+<!--
+  Generated template for the VideoCallPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>video-call</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content >
+  <div  *ngIf="showHangup">
+    <ion-fab  bottom center (click)='toggleVideoMute()' class="muteVideo">
+      <button ion-fab color="primary" *ngIf="isVideoMute"><img src="assets/video-off.png"></button> <!--- <ion-icon name="videocam-off"></ion-icon>-->
+      <button ion-fab color="primary" *ngIf="!isVideoMute"><ion-icon name="videocam"></ion-icon></button>
+    </ion-fab>
+    <ion-fab  bottom center  (click)='HangUp()'>
+      <button ion-fab color="danger"><ion-icon name="call"></ion-icon></button>
+    </ion-fab>
+    <ion-fab  bottom center (click)='toggleAudioMute()' class="muteAudio">
+      <button ion-fab color="primary" *ngIf="!isAudioMute"><ion-icon name="mic"></ion-icon></button>
+      <button ion-fab color="primary" *ngIf="isAudioMute"><ion-icon name="mic-off"></ion-icon></button>
+    </ion-fab>
+
+    <div id="remote" class="remoteVideo"  *ngIf="showRemoteVideo"></div>
+  </div>
+  <div id="mini" class="miniVideo"></div>
+
+</ion-content>

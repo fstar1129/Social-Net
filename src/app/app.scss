@@ -1,0 +1,333 @@
+// http://ionicframework.com/docs/v2/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+//Background of the screens
+.scroll-content {
+  background-color: white;
+  background-position: initial initial;
+  background-repeat: initial initial;
+}
+
+//Add class="no-scroll" on <ion-content> to disable scrolling
+.no-scroll .scroll-content {
+  overflow: hidden;
+}
+
+//Center Class to align content to center.
+.center {
+  text-align: center;
+}
+
+//Set header buttons and title to white
+ion-header {
+  button,
+  ion-title p {
+    color: #fff !important;
+  }
+}
+
+//Empty List
+.empty-list {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+
+  h1,
+  p {
+    color: $gray;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  p {
+    font-size: 1.125em;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button {
+    background: $dark;
+  }
+
+  button.activated,
+  button:active {
+    background: $dark-active;
+  }
+}
+
+//Avatar List
+ion-list.avatar-list {
+  ion-item {
+    background: rgba(0, 0, 0, 0.3) !important;
+
+    h2 {
+      color: #fff;
+    }
+
+    h3 {
+      color: $dark-active;
+
+      ion-icon.selected {
+        color: $primary;
+      }
+    }
+
+    p {
+      color: $primary !important;
+      max-width: 68vw;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    ion-avatar {
+      img {
+        width: 2.5em !important;
+        height: 2.5em !important;
+      }
+    }
+  }
+
+  ion-item.selected,
+  ion-item:active {
+    opacity: 0.5;
+  }
+
+  ion-fab button,
+  ion-fab button.activated {
+    background: transparent !important;
+  }
+
+  ion-fab button.activated ion-icon {
+    opacity: 0.5 !important;
+  }
+
+  ion-fab button ion-icon {
+    font-size: 2em !important;
+    color: $primary;
+  }
+
+  ion-icon.success {
+    color: $primary;
+  }
+
+  ion-icon.danger {
+    color: color($colors, danger);
+  }
+}
+
+//Messages Content for message.html and group.html
+div.messages {
+  p.center {
+    margin-top: 1.25em;
+    margin-bottom: 0.5em;
+
+    span {
+      padding: 0.25em 0.5em;
+      background: $secondary;
+      color: #fff;
+      border-radius: 0.4em;
+    }
+  }
+
+  p.center.activated,
+  p.center:active {
+    span {
+      background: $secondary-active;
+    }
+  }
+
+  .system {
+    text-align: center;
+    font-size: 90%;
+
+    p {
+      background: transparent !important;
+      max-width: 90vw;
+      color: $primary;
+    }
+
+    span {
+      margin-top: -0.6em;
+      text-align: center !important;
+    }
+  }
+
+  ion-col {
+    padding-top: 1em;
+
+    img {
+      border-radius: 100%;
+      width: 3.5em;
+      height: 3.5em;
+      object-fit: cover;
+    }
+
+    img.active,
+    img:active {
+      opacity: 0.5;
+    }
+
+    p {
+      // min-width: auto;
+      max-width: 67vw;
+      margin-top: 0;
+      color: #fff;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      margin-bottom: 0.5em;
+      background: $dark-active;
+      display: block;
+    }
+
+    span {
+      display: block;
+      text-align: left;
+      color: $gray;
+      font-size: 85%;
+      padding-left: 0.5em;
+    }
+  }
+
+  ion-col.sender {
+    p {
+      background: $primary;
+    }
+
+    span {
+      text-align: right;
+      padding-left: 0.5em;
+    }
+  }
+
+  div.right {
+    p {
+      display: inline-block !important;
+      float: right;
+    }
+
+    span {
+      float: right;
+      clear: right !important;
+      display: inline-block;
+    }
+  }
+
+  div.left {
+    float: left;
+    text-align: left;
+  }
+
+  div.left,
+  div.right {
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0.75em;
+    }
+  }
+}
+
+//Footer Bar for message.html and group.html
+ion-footer.footer {
+  background-image: url('../assets/images/background.png');
+  background-position: initial initial;
+  background-repeat: initial initial;
+}
+
+.bottom_bar {
+  background: rgba(0, 0, 0, 0.3) !important;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+
+  ion-input {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 110%;
+    border-radius: 0.75em;
+    color: #fff;
+  }
+
+  ion-fab button,
+  ion-fab button.activated {
+    background: transparent !important;
+  }
+
+  ion-fab button.activated ion-icon {
+    opacity: 0.5 !important;
+  }
+
+  ion-fab button ion-icon {
+    font-size: 2em !important;
+    color: $primary;
+  }
+}
+.outgoingcall{
+    background: #b9b9e4;
+    animation: pulse 1s infinite;
+    .alert-wrapper{
+          // background: #89629d;
+          // color: #fff;
+    }
+    .alert-title{
+      font-size: 18px !important;
+      text-align: center;
+      padding: 20px 10px;
+    }
+    .alert-head{
+        padding: 0px !important;
+    }
+    .alert-sub-title{
+      padding: 0px;
+      text-align: center;
+      margin-top:0px;
+    }
+    .button-inner{
+      justify-content:center !important;
+    }
+    .alert-button{
+      width: 100%;
+      background-color: map-get($colors, primary);
+      color: #fff;
+    }
+}
+.incomingcall{
+  .alert-button{
+    width: 45%;
+  }
+  .reject{
+  //  background-color: #87b555;
+  }
+}
+.online{
+  position: absolute;
+  bottom:3px;
+
+}
+.isOnline{
+  color:green
+}
+.isOffline{
+  color: #ddd
+}
+.alert-md .alert-button .button-inner{
+  justify-content:'space-around' !important;
+}

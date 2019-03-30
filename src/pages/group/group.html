@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons>
+      <button ion-button tappable (click)="back()">Back</button>
+    </ion-buttons>
+    <ion-title tappable (click)="groupInfo()">{{title}}</ion-title>
+    <!-- View Group Info -->
+    <ion-buttons end>
+      <button ion-button icon-only tappable (click)="groupInfo()"><ion-icon name="ios-more"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content has-footer>
+  <!-- Messages -->
+  <div class="messages">
+    <p class="center" *ngIf="startIndex > 0"><span tappable (click)="loadPreviousMessages()">Load previous messages</span></p>
+    <ion-row *ngFor="let message of messagesToShow; let i = index">
+      <!--  System Message -->
+      <ion-col col-12 class="system" *ngIf="isSystemMessage(message)">
+        <p>
+          <ion-icon name="{{message.icon}}"></ion-icon>
+          {{message.message}} <br/>
+          <span >{{message.date | DateFormat}}</span>
+        </p>
+      </ion-col>
+      <!--  Message -->
+      <ion-col col-2 class="center" *ngIf="isSender(message) && !isSystemMessage(message)">
+        <img src="{{message.avatar}}" (load)="doScroll()"/>
+      </ion-col>
+      <ion-col col-1 *ngIf="!isSender(message) && !isSystemMessage(message)">
+      </ion-col>
+      <ion-col col-9 class="sender" *ngIf="isSender(message) && !isSystemMessage(message)" (press)="share(message,i)">
+        <div class="left" *ngIf="message.type == 'text'">
+          <p>
+            {{message.message}}<br/>
+              <span>{{message.date | DateFormat}}</span>
+          </p>
+          
+        </div>
+         <div class="left" *ngIf="message.type == 'audio'">
+         <p>
+             <audio-track #audio  [track]="message" (onFinish)="onTrackFinished($event)">
+              <ion-item>  
+                <ion-thumbnail item-left>
+                  <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>  
+                </ion-thumbnail>
+                <div item-content style="width:100%">
+                  <audio-track-progress-bar dark duration progress [audioTrack]="audio" [ngStyle]="{visibility: audio.completed > 0 ? 'visible' : 'hidden'}"></audio-track-progress-bar>
+                </div>
+              </ion-item>    
+            </audio-track>
+             <span>{{message.date | DateFormat}}</span>
+          </p>
+          
+        </div>
+
+        <div class="left" *ngIf="message.type == 'image'">
+       <p>
+          <img tappable (click)="enlargeImage(message.url)" src="{{message.url}}" (load)="doScroll()"/>
+          <span>{{message.date | DateFormat}}</span>
+         </p>
+        </div>
+      </ion-col>
+      <ion-col col-9 *ngIf="!isSender(message) && !isSystemMessage(message)"  (press)="share(message,i)">
+        <div class="right" *ngIf="message.type == 'text'">
+          <p>{{message.name}} <br>
+          {{message.message}} 
+              <span>{{message.date | DateFormat}}</span>
+          </p>
+          
+        </div>
+        <div class="left" *ngIf="message.type == 'image'">
+          <p>
+          <img tappable (click)="enlargeImage(message.url)" src="{{message.url}}" (load)="doScroll()"/>
+          <span>{{message.date | DateFormat}}</span>
+          </p>
+        </div>
+      </ion-col>
+      <ion-col col-1 *ngIf="isSender(message) && !isSystemMessage(message)">
+      </ion-col>
+      <ion-col col-2 class="center" *ngIf="!isSender(message) && !isSystemMessage(message)">
+        <img src="{{message.avatar}}" tappable (click)="viewUser(message.sender)" (load)="doScroll()"/>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+<!-- Message Box -->
+<ion-footer>
+    <ion-grid class="bottom_bar">
+        <ion-row>
+          <ion-col>
+              <ion-fab middle left >
+                  <ion-buttons style="margin-top:13px">
+                  <button mini tappable (click)="sendPhoto()"><ion-icon name="md-camera"></ion-icon></button>
+                  </ion-buttons>
+                </ion-fab>
+          </ion-col>
+          <ion-col>
+              <ion-fab middle left >
+                  <ion-buttons style="margin-top:13px">
+                  <button mini tappable (press)="audioRec()"><ion-icon name="md-mic"></ion-icon></button>
+                  </ion-buttons>
+                </ion-fab>
+          </ion-col>
+          <ion-col col-8>
+              <ion-textarea style="color: white" placeholder="Type your message" [(ngModel)]="message" (focus)="scrollBottom()" (keypress)="onType($event.keyCode)"></ion-textarea>
+          </ion-col>
+          <ion-col>
+              <ion-fab middle right style="position: absolute; right: 0 ;">
+                  <button ion-fab mini tappable (click)="send()" [disabled]="!message"><ion-icon name="md-send"></ion-icon></button>
+                </ion-fab>
+          </ion-col>
+        </ion-row>
+       
+    </ion-grid>
+</ion-footer>

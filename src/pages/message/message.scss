@@ -1,0 +1,19 @@
+page-message {
+
+	
+//Background of the screens
+.scroll-content {
+background-image: url('../assets/images/background.png');
+
+  background-position: initial initial;
+  background-repeat: initial initial;
+}
+.item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left], .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start]{
+	margin: 8px 0px 8px 0px;
+}
+.online{
+  position: absolute;
+  top:45px;
+}
+
+}

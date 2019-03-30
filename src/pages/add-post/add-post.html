@@ -1,0 +1,57 @@
+<!--
+  Generated template for the AddPostPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>add-post</ion-title>
+    <ion-buttons end (click)="post()">
+      <button  [disabled]="!postText">
+      POST
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-line>
+  <ion-item *ngIf="user">
+    <ion-thumbnail item-left  >
+      <img src="{{user.img}}"  >
+    </ion-thumbnail>
+    <p><b>{{user.username}}</b></p>
+  </ion-item>
+  <ion-item>
+    <textarea placeholder="Please enter your message" [(ngModel)]="postText"> </textarea>
+  </ion-item>
+  <ion-item *ngIf="image">
+    <img src="{{image}}">
+  </ion-item>
+  <div #map id="map" style="height:50%;"></div>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50>
+        <button ion-button icon-left block color="primary" (click)="imageShare()" [disabled]="location">
+          <ion-icon name='camera'></ion-icon> Image
+        </button>
+        <!-- <button ion-button icon-only outline color="custom" [disabled]="shareImage">
+          <ion-icon name='navigate'></ion-icon>
+
+        </button> -->
+      </ion-col>
+      <ion-col width-50>
+        <button ion-button icon-left block color="primary" (click)="locationShare()"  [disabled]="image"> <!---(click)="locationShare()" -->
+            <ion-icon name='navigate'></ion-icon>
+            Location
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-footer>

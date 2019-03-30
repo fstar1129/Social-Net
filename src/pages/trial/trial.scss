@@ -1,0 +1,74 @@
+page-trial {
+  .profile {
+    position: relative;
+    overflow: hidden;
+    height: 24vh;
+    margin-bottom: -0.625em;
+
+    img {
+      width: 28vw;
+      height: 28vw;
+      border-radius: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      object-fit: cover;
+    }
+  }
+
+  h4,
+  p {
+    text-align: center;
+  }
+
+  h4 {
+    margin: 0;
+    padding: 0 0 0.75em;
+    color: #fff;
+  }
+
+  p {
+    color: $gray;
+  }
+
+  p span {
+    color: $primary;
+  }
+
+  .divider {
+    width: 12vw;
+    border-bottom: solid 0.2em $primary;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ion-icon {
+    color: #fff;
+    font-size: 1.4em;
+  }
+
+  ion-icon.firebase {
+    color: $primary;
+  }
+
+  ion-list {
+    margin-top: 1.125em !important;
+
+    ion-item {
+      background: rgba(0, 0, 0, 0.3) !important;
+      color: #fff !important;
+    }
+
+    ion-item.activated {
+      background: rgba(0, 0, 0, 0.5) !important;
+      color: $primary !important;
+    }
+
+    ion-item.activated ion-icon {
+      color: $primary;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons>
+      <button ion-button tappable (click)="back()">Back</button>
+    </ion-buttons>
+    <ion-title>Group Info</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- Group Info -->
+  <div *ngIf="group">
+    <div class="profile">
+      <img src="{{group.img}}" tappable (click)="setPhoto()" />
+    </div>
+    <h4>
+      <span tappable (click)="setName()">{{group.name}}</span>
+    </h4>
+    <p class="username">Started {{group.dateCreated | DateFormat}}</p>
+    <p class="description" tappable (click)="setDescription()">{{group.description}}</p>
+    <div class="divider"></div>
+    <!-- Members -->
+    <div *ngIf="groupMembers" class="members">
+      <!-- <img *ngFor="let member of groupMembers" src="{{member.img}}"  tappable (click)="viewUser(member.$key)" [ngStyle]="{'border': isAdminOrNot(member) ? '1px solid red' : '1px solid #cccccc'}"/> -->
+      <span *ngFor="let member of groupMembers" (press)="assignNewAdmin(member)">
+        <img  src="{{member.img}}"  tappable (click)="viewUser(member.$key)" *ngIf="isAdminOrNot(member)" style="border:2px solid green"/>
+        <img  src="{{member.img}}"  tappable (click)="viewUser(member.$key)" *ngIf="!isAdminOrNot(member)" style="border:2px solid #cccccc"/>
+      </span>
+    </div>
+    <!-- Group Menu -->
+    <ion-list>
+      <ion-item no-lines tappable (click)="setName()">
+        Set Group Name
+        <ion-icon name="md-chatbubbles" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setPhoto()">
+        Set Group Photo
+        <ion-icon name="ios-camera" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="setDescription()">
+        Set Group Description
+        <ion-icon name="md-clipboard" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="addMembers()" *ngIf="isAdmin">
+        Add More Members
+        <ion-icon name="md-contacts" item-right></ion-icon>
+      </ion-item>
+      <ion-item no-lines tappable (click)="leaveGroup()" *ngIf="groupMembers && groupMembers.length > 1">
+        Leave Group
+        <ion-icon name="md-log-out" item-right></ion-icon>
+      </ion-item>
+      <!-- When there's only one member left, allow deleting of group. -->
+      <ion-item no-lines tappable (click)="deleteGroup()" *ngIf="groupMembers && groupMembers.length <= 1">
+        Delete Group
+        <ion-icon name="md-trash" item-right></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

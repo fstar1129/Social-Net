@@ -1,0 +1,56 @@
+<ion-content>
+  <div class="top">
+    <img src="assets/logo.png" >
+  </div>
+  <!-- Social Login Buttons -->
+  <div class="bottom">
+    <div class="form" *ngIf="mode== 'main'">
+      <div>
+         <form [formGroup]="emailPasswordForm">
+          <ion-list>
+            <ion-item no-lines>
+              <ion-input type="email" formControlName="email" placeholder="Email Address"></ion-input>
+            </ion-item>
+            <ion-item no-lines>
+              <ion-input type="password" formControlName="password" placeholder="Create Password"></ion-input>
+            </ion-item>
+            <button ion-button icon-left class="dark" tappable (click)="login()" [disabled]="!emailPasswordForm.valid">LOGIN</button>
+          </ion-list>
+        </form>
+        <button ion-button  icon-left class="facebook" class="facebook" tappable (click)="loginProvider.facebookLogin()"><ion-icon name="logo-facebook"></ion-icon>LOGIN WITH FACEBOOK</button>
+        <button ion-button icon-left class="google" class="google" tappable (click)="loginProvider.googleLogin()"><ion-icon name="logo-google"></ion-icon>LOGIN WITH GOOGLE</button>
+        <button ion-button icon-left class="dark" tappable (click)="loginWithPhone()"><ion-icon name="md-call"></ion-icon>Signup with Phone</button>
+        <p tappable (click)="clearForms(); mode = 'register'">Don't Have an Account? <b>Sign up</b></p>
+        <p tappable (click)="clearForms(); mode = 'forgotPassword'">Forgot your Password?</p>
+      </div>
+    </div>
+    <!-- Sign Form -->
+    <div class="form" *ngIf="mode == 'register'">
+      <button class="clear" ion-button icon-only tappable (click)="mode = 'main'"><ion-icon name="md-close"></ion-icon></button>
+      <form [formGroup]="emailPasswordForm">
+        <ion-list>
+          <ion-item no-lines>
+            <ion-input type="email" formControlName="email" placeholder="Email Address"></ion-input>
+          </ion-item>
+          <ion-item no-lines>
+            <ion-input type="password" formControlName="password" placeholder="Your Password"></ion-input>
+          </ion-item>
+        </ion-list>
+        <button ion-button icon-left class="dark" tappable (click)="register()" [disabled]="!emailPasswordForm.valid">SIGN UP</button>
+      </form>
+    </div>
+
+    <!-- Forgot Password Form -->
+    <div class="form" *ngIf="mode == 'forgotPassword'">
+      <button class="clear icon-right" ion-button icon-right icon-only tappable (click)="clearForms(); mode = 'main'"><ion-icon name="md-close"></ion-icon></button>
+      <form [formGroup]="emailForm">
+        <ion-list>
+          <ion-item no-lines>
+            <ion-input type="email" formControlName="email" placeholder="Your Email Address"></ion-input>
+          </ion-item>
+        </ion-list>
+        <button ion-button icon-left class="dark" tappable (click)="forgotPassword()" [disabled]="!emailForm.valid">Reset Password</button>
+      </form>
+    </div>
+  </div>
+</ion-content>
