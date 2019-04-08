@@ -26,12 +26,6 @@ $ ionic cordova run ios
 
 ## ----------------------------------------------------------------------
 
-NOTE : if you getting error while running code in android please do following step.
-
-1. Remove 'node_module'
-2. Download node_module from 'https://drive.google.com/file/d/1iixG_0pn68Mf6crqGKXwJrwhFWwIrYEU/view?usp=sharing'
-3. Paste it on root folder
-
 PLEAE FOLLOW BELOW INSTRATIONS
 
 1. Download code and unzip it
